@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+abstract class Employee {
+    abstract double calculateSalary();
+}
+
+class Manager extends Employee {
+    double baseSalary;
+    double bonus;
+
+    Manager(double baseSalary, double bonus) {
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+
+    @Override
+    double calculateSalary() {
+        return baseSalary + bonus;
+    }
+}
+
+class Programmer extends Employee {
+    double baseSalary;
+    double overtimeHours;
+    double overtimeRate;
+
+    Programmer(double baseSalary, double overtimeHours, double overtimeRate) {
+        this.baseSalary = baseSalary;
+        this.overtimeHours = overtimeHours;
+        this.overtimeRate = overtimeRate;
+    }
+
+    
+    double calculateSalary() {
+        return baseSalary + (overtimeHours * overtimeRate);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the base salary and bonus for the manager:");
+        double managerBaseSalary = scanner.nextDouble();
+        double managerBonus = scanner.nextDouble();
+        Employee manager = new Manager(managerBaseSalary, managerBonus);
+        System.out.println("Manager's salary: " + manager.calculateSalary());
+
+        System.out.println("Enter the base salary, overtime hours, and overtime rate for the programmer:");
+        double programmerBaseSalary = scanner.nextDouble();
+        double programmerOvertimeHours = scanner.nextDouble();
+        double programmerOvertimeRate = scanner.nextDouble();
+        Employee programmer = new Programmer(programmerBaseSalary, programmerOvertimeHours, programmerOvertimeRate);
+        System.out.println("Programmer's salary: " + programmer.calculateSalary());
+
+        scanner.close();
+    }
+}

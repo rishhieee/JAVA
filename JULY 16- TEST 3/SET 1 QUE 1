@@ -1,0 +1,51 @@
+class ComplexNumber {
+    private double real;
+    private double imaginary;
+
+    public ComplexNumber(double real, double imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+
+    
+    public ComplexNumber add(ComplexNumber other) {
+        return new ComplexNumber(this.real + other.real, this.imaginary + other.imaginary);
+    }
+
+    public ComplexNumber add(double realPart) {
+        return new ComplexNumber(this.real + realPart, this.imaginary);
+    }
+
+  
+    public ComplexNumber multiply(ComplexNumber other) {
+        double newReal = this.real * other.real - this.imaginary * other.imaginary;
+        double newImaginary = this.real * other.imaginary + this.imaginary * other.real;
+        return new ComplexNumber(newReal, newImaginary);
+    }
+
+    public ComplexNumber multiply(double scalar) {
+        return new ComplexNumber(this.real * scalar, this.imaginary * scalar);
+    }
+
+    public String toString() {
+        return "(" + real + " + " + imaginary + "i)";
+    }
+}
+
+public class TestComplexNumber {
+    public static void main(String[] args) {
+        ComplexNumber num1 = new ComplexNumber(3.0, 4.0);
+        ComplexNumber num2 = new ComplexNumber(5.0, 2.0);
+
+        ComplexNumber sum1 = num1.add(num2);
+        ComplexNumber sum2 = num1.add(2.0);
+
+        ComplexNumber product1 = num1.multiply(num2);
+        ComplexNumber product2 = num1.multiply(1.5);
+
+        System.out.println("Sum 1: " + sum1);
+        System.out.println("Sum 2: " + sum2);
+        System.out.println("Product 1: " + product1);
+        System.out.println("Product 2: " + product2);
+    }
+}

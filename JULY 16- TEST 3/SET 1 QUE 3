@@ -1,0 +1,66 @@
+class Member {
+    String name;
+    String role;
+
+    Member(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    void getDetails() {
+    }
+}
+
+class Student extends Member {
+    String grade;
+
+    Student(String name, String grade) {
+        super(name, "Student");
+        this.grade = grade;
+    }
+
+    @Override
+    void getDetails() {
+        System.out.println("Name: " + name + ", Role: " + role + ", Grade: " + grade);
+    }
+}
+
+class Teacher extends Member {
+    String subject;
+
+    Teacher(String name, String subject) {
+        super(name, "Teacher");
+        this.subject = subject;
+    }
+
+    @Override
+    void getDetails() {
+        System.out.println("Name: " + name + ", Role: " + role + ", Subject: " + subject);
+    }
+}
+
+class Staff extends Member {
+    String department;
+
+    Staff(String name, String department) {
+        super(name, "Staff");
+        this.department = department;
+    }
+
+    @Override
+    void getDetails() {
+        System.out.println("Name: " + name + ", Role: " + role + ", Department: " + department);
+    }
+}
+
+public class TestInstitution {
+    public static void main(String[] args) {
+        Student student = new Student("AARNA", "A");
+        Teacher teacher = new Teacher("MISS.NANTHINI", "JAVA");
+        Staff staff = new Staff("LAKSHMI", "Administration");
+
+        student.getDetails();
+        teacher.getDetails();
+        staff.getDetails();
+    }
+}

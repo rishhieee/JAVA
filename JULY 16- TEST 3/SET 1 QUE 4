@@ -1,0 +1,80 @@
+class File {
+    public void open() {
+    }
+
+    public void close() {
+    }
+
+    public String getInfo() {
+        return "File information";
+    }
+}
+
+class TextFile extends File {
+    @Override
+    public void open() {
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public String getInfo() {
+        return "Text file information";
+    }
+}
+
+class ImageFile extends File {
+    private int resolution;
+
+    public ImageFile(int resolution) {
+        this.resolution = resolution;
+    }
+
+    @Override
+    public void open() {
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public String getInfo() {
+        return "Image file information with resolution: " + resolution;
+    }
+}
+
+class VideoFile extends File {
+    private double duration;
+
+    public VideoFile(double duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public void open() {
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public String getInfo() {
+        return "Video file information with duration: " + duration;
+    }
+}
+
+public class TestFiles {
+    public static void main(String[] args) {
+        TextFile textFile = new TextFile();
+        ImageFile imageFile = new ImageFile(1920);
+        VideoFile videoFile = new VideoFile(120.5);
+
+        System.out.println("Text File Info: " + textFile.getInfo());
+        System.out.println("Image File Info: " + imageFile.getInfo());
+        System.out.println("Video File Info: " + videoFile.getInfo());
+    }
+}

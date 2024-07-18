@@ -32,8 +32,8 @@ class circle extends shape {
 
 public class Main {
     public static void main(String[] args) {
-        rectangle rectangle1 = new rectangle(5, 3);
-        circle circle1= new circle(7);
+        rectangle rectangle1 = new rectangle(5, 30);
+        circle circle1= new circle(37);
 
         System.out.println("Area of Rectangle: " + rectangle1.area());
         System.out.println("Area of Circle: " + circle1.area());

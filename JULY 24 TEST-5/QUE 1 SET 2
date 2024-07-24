@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class StudentAttendanceSystem {
+
+    private Map<Integer, ArrayList<AttendanceRecord>> attendanceData;
+
+    public StudentAttendanceSystem() {
+        attendanceData = new HashMap<>();
+    }
+
+    public void markAttendance(int studentId, String date, boolean isPresent) {
+        if (!attendanceData.containsKey(studentId)) {
+            attendanceData.put(studentId, new ArrayList<>());
+        }
+        attendanceData.get(studentId).add(new AttendanceRecord(date, isPresent));
+    }
+
+    public void generateAttendanceReport(int studentId) {
+        if (!attendanceData.containsKey(studentId)) {
+            System.out.println("No records found for student ID: " + studentId);
+            return;
+        }
+        System.out.println("Attendance Report for Student ID: " + studentId);
+        for (AttendanceRecord record : attendanceData.get(studentId)) {
+            System.out.println("Date: " + record.getDate() + " - Present: " + record.isPresent());
+        }
+    }
+
+    public double calculateAttendancePercentage(int studentId) {
+        if (!attendanceData.containsKey(studentId)) {
+            System.out.println("No records found for student ID: " + studentId);
+            return 0.0;
+        }
+        int totalClasses = attendanceData.get(studentId).size();
+        int presentClasses = 0;
+        for (AttendanceRecord record : attendanceData.get(studentId)) {
+            if (record.isPresent()) {
+                presentClasses++;
+            }
+        }
+        return (presentClasses / (double) totalClasses) * 100;
+    }
+
+    public static void main(String[] args) {
+        StudentAttendanceSystem system = new StudentAttendanceSystem();
+        system.markAttendance(1, "2024-07-01", true);
+        system.markAttendance(1, "2024-07-02", false);
+        system.markAttendance(1, "2024-07-03", true);
+
+        system.generateAttendanceReport(1);
+
+        double percentage = system.calculateAttendancePercentage(1);
+        System.out.println("Attendance Percentage for Student ID 1: " + percentage + "%");
+    }
+}
+
+class AttendanceRecord {
+    private String date;
+    private boolean isPresent;
+
+    public AttendanceRecord(String date, boolean isPresent) {
+        this.date = date;
+        this.isPresent = isPresent;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public boolean isPresent() {
+        return isPresent;
+    }
+}

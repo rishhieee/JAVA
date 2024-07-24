@@ -1,0 +1,46 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class weather{
+
+    private Map<String, String> currentWeatherData;
+    private Map<String, String[]> weeklyForecastData;
+
+    public weather() {
+        currentWeatherData = new HashMap<>();
+        weeklyForecastData = new HashMap<>();
+        currentWeatherData.put("saveetha", "Sunny, 25 deg C");
+        weeklyForecastData.put("saveetha", new String[] {"Sunny, 25 deg C", "Cloudy, 23 deg C", "Rainy, 20 deg C", "Sunny, 24 deg C", "Partly Cloudy, 22 deg C", "Rainy, 21 deg C", "Sunny, 25 deg C"});
+        
+        currentWeatherData.put("poonamalle", "Cloudy, 22 deg C");
+        weeklyForecastData.put("poonamalle", new String[] {"Cloudy, 22 deg C", "Sunny, 24 deg C", "Sunny, 25 deg C", "Sunny, 26 deg C", "Sunny, 27 deg C", "Cloudy, 24 deg C", "Sunny, 25 deg C"});
+        currentWeatherData.put("koyambedu", "Cloudy, 22 deg C");
+        weeklyForecastData.put("koyambedu", new String[] {"Rainy, 12 deg C", "Stormy, 15 deg C", "Sunny, 25 deg C", "Sunny, 26 deg C", "Cloudy, 27 deg C", "Cloudy, 24 deg C", "Sunny, 25 deg C"});
+    }
+
+    public String getCurrentWeather(String location) {
+        return currentWeatherData.getOrDefault(location, "Location not found");
+    }
+
+    public String[] getWeeklyForecast(String location) {
+        return weeklyForecastData.getOrDefault(location, new String[] {"Location not found"});
+    }
+
+    public void displayWeatherDetails(String location) {
+        System.out.println("Current Weather for " + location + ": " + getCurrentWeather(location));
+        System.out.println("Weekly Forecast for " + location + ":");
+        String[] forecast = getWeeklyForecast(location);
+        for (String dayForecast : forecast) {
+            System.out.println(dayForecast);
+        }
+    }
+
+    public static void main(String[] args) {
+      weather app = new weather();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the location for weather details: ");
+        String location = scanner.nextLine();
+         app.displayWeatherDetails(location);
+    }
+}

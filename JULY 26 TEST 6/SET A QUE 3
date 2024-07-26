@@ -1,0 +1,17 @@
+ class Calculator {
+    public int divide(int a, int b) {
+        return a / b;
+    }
+}
+
+public class TestCalculator {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        try {
+            int result = calc.divide(10, 0);
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero.");
+        }
+    }
+}

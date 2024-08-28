@@ -1,0 +1,16 @@
+import java.util.regex.Pattern;
+
+public class PhoneNumberValidator {
+    private static final Pattern PHONE_PATTERN = Pattern.compile(
+        "^\\d{3}-\\d{3}-\\d{4}$"
+    );
+
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        return PHONE_PATTERN.matcher(phoneNumber).matches();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isValidPhoneNumber("123-456-7890"));
+        System.out.println(isValidPhoneNumber("1234567890"));
+    }
+}
